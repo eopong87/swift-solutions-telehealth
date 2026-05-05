@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+build/
+.env.local
+.env.production
+
+# AWS
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Mac
+.DS_Store
