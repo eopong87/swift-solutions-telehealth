@@ -2,9 +2,24 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app import routes
+import time
+import sqlalchemy
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Wait for database to be ready
+def wait_for_db():
+    retries = 10
+    while retries > 0:
+        try:
+            Base.metadata.create_all(bind=engine)
+            print("Database connected successfully!")
+            return
+        except sqlalchemy.exc.OperationalError:
+            print(f"Database not ready, retrying... ({retries} attempts left)")
+            retries -= 1
+            time.sleep(3)
+    raise Exception("Could not connect to database after multiple attempts")
+
+wait_for_db()
 
 app = FastAPI(
     title="Swift Solutions Telehealth API",
@@ -12,7 +27,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware - allows frontend to talk to backend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "https://app.swiftsolutions.com"],
@@ -21,7 +35,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routes
 app.include_router(routes.router)
 
 @app.get("/")

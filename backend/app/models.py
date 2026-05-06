@@ -16,7 +16,7 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     
     patient_profile = relationship("PatientProfile", back_populates="user", uselist=False)
-    appointments = relationship("Appointment", back_populates="patient")
+    appointments = relationship("Appointment", foreign_keys="Appointment.patient_id", back_populates="patient")
     sent_messages = relationship("Message", foreign_keys="Message.sender_id", back_populates="sender")
 
 class PatientProfile(Base):
