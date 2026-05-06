@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User } from '../App';
 import Appointments from './Appointments';
+import Messages from './Messages';
 
 interface DashboardProps {
   user: User;
@@ -62,6 +63,10 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
       {activePage === 'appointments' && (
         <Appointments user={user} onBack={() => setActivePage(null)} />
       )}
+      {activePage === 'messages' && (
+  <Messages user={user} onBack={() => setActivePage(null)} />
+)}
+      
 
       {/* Main Dashboard */}
       {!activePage && (
