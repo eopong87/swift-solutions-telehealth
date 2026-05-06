@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { User } from '../App';
 import Appointments from './Appointments';
 import Messages from './Messages';
+import Documents from './Documents';
 
 interface DashboardProps {
   user: User;
@@ -29,7 +30,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
         alignItems: 'center',
         boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
       }}>
-        <div 
+        <div
           style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}
           onClick={() => setActivePage(null)}
         >
@@ -64,9 +65,11 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
         <Appointments user={user} onBack={() => setActivePage(null)} />
       )}
       {activePage === 'messages' && (
-  <Messages user={user} onBack={() => setActivePage(null)} />
-)}
-      
+        <Messages user={user} onBack={() => setActivePage(null)} />
+      )}
+      {activePage === 'documents' && (
+        <Documents user={user} onBack={() => setActivePage(null)} />
+      )}
 
       {/* Main Dashboard */}
       {!activePage && (
