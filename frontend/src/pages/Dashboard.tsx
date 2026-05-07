@@ -3,6 +3,7 @@ import { User } from '../App';
 import Appointments from './Appointments';
 import Messages from './Messages';
 import Documents from './Documents';
+import VideoCall from './VideoCall';
 
 interface DashboardProps {
   user: User;
@@ -70,6 +71,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
       {activePage === 'documents' && (
         <Documents user={user} onBack={() => setActivePage(null)} />
       )}
+      {activePage === 'video' && (
+  <VideoCall user={user} onBack={() => setActivePage(null)} />
+)}
 
       {/* Main Dashboard */}
       {!activePage && (
