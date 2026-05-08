@@ -33,7 +33,7 @@ const Messages: React.FC<MessagesProps> = ({ user, onBack }) => {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/messages/${user.id}`);
+      const response = await fetch(`http://54.80.229.179:8000/messages/${user.id}`);
       const data = await response.json();
       setMessages(data);
     } catch (err) {
@@ -46,7 +46,7 @@ const Messages: React.FC<MessagesProps> = ({ user, onBack }) => {
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/messages?sender_id=${user.id}`, {
+      const response = await fetch(`http://54.80.229.179:8000/messages?sender_id=${user.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newMessage)
@@ -63,7 +63,7 @@ const Messages: React.FC<MessagesProps> = ({ user, onBack }) => {
 
   const markAsRead = async (messageId: number) => {
     try {
-      await fetch(`http://localhost:8000/messages/${messageId}/read`, {
+      await fetch(`http://54.80.229.179:8000/messages/${messageId}/read`, {
         method: 'PUT'
       });
       fetchMessages();

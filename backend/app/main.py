@@ -29,7 +29,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://app.swiftsolutions.com"],
+    allow_origins=["http://localhost:3000", "https://app.swiftsolutions.com", "http://swift-solutions-frontend.s3-website-us-east-1.amazonaws.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
