@@ -32,7 +32,7 @@ const Appointments: React.FC<AppointmentsProps> = ({ user, onBack }) => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch(`http://54.80.229.179:8000/appointments/${user.id}`);
+      const response = await fetch(`http://swift-solutions-alb-1492420054.us-east-1.elb.amazonaws.com/appointments/${user.id}`);
       const data = await response.json();
       setAppointments(data);
     } catch (err) {
@@ -45,7 +45,7 @@ const Appointments: React.FC<AppointmentsProps> = ({ user, onBack }) => {
   const createAppointment = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://54.80.229.179:8000/appointments', {
+      const response = await fetch('http://swift-solutions-alb-1492420054.us-east-1.elb.amazonaws.com/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

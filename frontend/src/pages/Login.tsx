@@ -17,7 +17,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     setError('');
 
     try {
-      const response = await fetch('http://54.80.229.179:8000/users');
+      const response = await fetch('http://swift-solutions-alb-1492420054.us-east-1.elb.amazonaws.com/users');
       const users = await response.json();
       
       const user = users.find((u: User & { hashed_password?: string }) => 
