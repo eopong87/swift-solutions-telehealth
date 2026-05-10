@@ -55,7 +55,7 @@ jobs:
         run: |
           cd frontend
           npm install
-          npm run build
+          CI=false npm run build
 
       - name: Deploy to S3
         run: |

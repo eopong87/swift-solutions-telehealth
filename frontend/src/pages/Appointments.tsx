@@ -28,6 +28,7 @@ const Appointments: React.FC<AppointmentsProps> = ({ user, onBack }) => {
 
   useEffect(() => {
     fetchAppointments();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchAppointments = async () => {

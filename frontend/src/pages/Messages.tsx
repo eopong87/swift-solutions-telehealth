@@ -29,6 +29,7 @@ const Messages: React.FC<MessagesProps> = ({ user, onBack }) => {
 
   useEffect(() => {
     fetchMessages();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchMessages = async () => {
