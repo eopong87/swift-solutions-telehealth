@@ -3,6 +3,7 @@ import './App.css';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
+import StaffDashboard from './pages/StaffDashboard';
 
 export interface User {
   id: number;
@@ -28,7 +29,11 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Dashboard user={user} onLogout={handleLogout} />
+        user.role === 'staff' || user.role === 'provider' ? (
+          <StaffDashboard user={user} onLogout={handleLogout} />
+        ) : (
+          <Dashboard user={user} onLogout={handleLogout} />
+        )
       ) : showRegister ? (
         <Register onLogin={handleLogin} onBackToLogin={() => setShowRegister(false)} />
       ) : (
