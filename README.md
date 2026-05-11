@@ -1,19 +1,22 @@
 # Swift Solutions Telehealth Platform
 
-A full-stack, HIPAA-conscious telehealth platform built for Swift Solutions Medical Center. Patients can book appointments, message providers, upload documents, and join video consultations — all through a secure cloud-native application.
+A full-stack, HIPAA-conscious telehealth platform built for Swift Solutions Medical Center. Patients can register, book appointments, message providers, upload documents, chat with an AI medical assistant, and join real video consultations — all through a secure cloud-native application.
 
 ## 🌐 Live Demo
 - **Frontend:** http://swift-solutions-frontend.s3-website-us-east-1.amazonaws.com
 - **Backend API:** http://swift-solutions-alb-1492420054.us-east-1.elb.amazonaws.com
 - **API Docs:** http://swift-solutions-alb-1492420054.us-east-1.elb.amazonaws.com/docs
 
+### Test Accounts
+- **Patient:** test@swiftsolutions.com / Test123!
+- **Staff:** doctor@swiftsolutions.com / Doctor123!
+
 ---
 
 ## 🏗️ Architecture
                 ┌─────────────────┐
                 │   React Frontend │
-                │   (AWS S3 +     │
-                │   CloudFront)   │
+                │   (AWS S3)      │
                 └────────┬────────┘
                          │
                 ┌────────▼────────┐
@@ -39,13 +42,15 @@ A full-stack, HIPAA-conscious telehealth platform built for Swift Solutions Medi
 ### Frontend
 - React 18 with TypeScript
 - AWS S3 Static Website Hosting
-- Responsive UI with custom CSS
+- Daily.co for real video calls
+- Responsive design for mobile and desktop
 
 ### Backend
 - Python FastAPI
 - Docker containerized
 - AWS ECS Fargate (serverless containers)
 - AWS Application Load Balancer
+- Claude AI (Anthropic) for medical assistant
 
 ### Database
 - PostgreSQL 15
@@ -61,12 +66,19 @@ A full-stack, HIPAA-conscious telehealth platform built for Swift Solutions Medi
 
 ## ✨ Features
 
-- 🔐 **User Authentication** — secure login and registration
+### Patient Portal
+- 🔐 **User Registration & Authentication** — secure signup and login
 - 📅 **Appointment Booking** — schedule and manage appointments
 - 💬 **Secure Messaging** — HIPAA-conscious patient-provider messaging
 - 📄 **Document Management** — upload and manage medical documents
-- 🎥 **Video Consultations** — join telehealth video calls
-- 👤 **Patient Profiles** — manage patient demographics
+- 🎥 **Video Consultations** — real video calls powered by Daily.co
+- 🤖 **AI Medical Assistant** — Claude-powered health chatbot
+
+### Staff Portal
+- 📊 **Overview Dashboard** — patient and appointment statistics
+- 👥 **Patient Management** — view all patients and their status
+- 📅 **Appointment Management** — view, complete, or cancel appointments
+- 🏥 **Provider Interface** — dedicated staff experience
 
 ---
 
@@ -138,13 +150,22 @@ swift-solutions-telehealth/
 │   │   ├── main.py         # FastAPI application
 │   │   ├── database.py     # Database connection
 │   │   ├── models.py       # SQLAlchemy models
-│   │   └── routes.py       # API endpoints
+│   │   └── routes.py       # API endpoints + AI chat
 │   ├── Dockerfile
 │   └── requirements.txt
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/          # React pages
-│   │   └── App.tsx         # Root component
+│   │   ├── pages/
+│   │   │   ├── Login.tsx         # Login page
+│   │   │   ├── Register.tsx      # Patient registration
+│   │   │   ├── Dashboard.tsx     # Patient dashboard
+│   │   │   ├── StaffDashboard.tsx # Staff portal
+│   │   │   ├── Appointments.tsx  # Appointment management
+│   │   │   ├── Messages.tsx      # Secure messaging
+│   │   │   ├── Documents.tsx     # Document management
+│   │   │   ├── VideoCall.tsx     # Daily.co video calls
+│   │   │   └── Chat.tsx          # AI medical assistant
+│   │   └── App.tsx
 │   └── package.json
 ├── terraform/              # Infrastructure as Code
 └── .github/
@@ -159,6 +180,7 @@ swift-solutions-telehealth/
 - Security groups restrict traffic between layers
 - Environment variables for sensitive configuration
 - HTTPS-ready architecture
+- HIPAA-conscious design patterns
 
 ---
 
@@ -177,6 +199,14 @@ swift-solutions-telehealth/
 
 ---
 
+## 🤖 AI Features
+
+- **Medical Assistant** — Claude AI answers health questions, helps prepare for appointments, explains medical terms
+- Powered by Anthropic's Claude Sonnet model
+- Context-aware responses tailored to each patient
+
+---
+
 ## 👩‍💻 Author
 
 Built by **Edward Opong** as part of a cloud engineering portfolio project.
@@ -187,9 +217,9 @@ Built by **Edward Opong** as part of a cloud engineering portfolio project.
 
 ## 🗺️ Roadmap
 
-- [ ] Patient registration page
-- [ ] Staff portal for providers
-- [ ] AI chatbot powered by Claude API
-- [ ] Real video calls with Daily.co
-- [ ] Mobile responsive design
-- [ ] Phase 3: Terraform rebuild ✅
+[x] Patient registration page
+- [x] Staff portal for providers
+- [x] AI chatbot powered by Claude API
+- [x] Real video calls with Daily.co
+- [x] Mobile responsive design
+- [x] Terraform infrastructure as code
