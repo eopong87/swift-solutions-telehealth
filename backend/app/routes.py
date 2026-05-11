@@ -224,3 +224,4 @@ async def chat(request: ChatRequest):
     )
     
     return {"response": message.content[0].text}
+# trigger rebuild
