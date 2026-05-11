@@ -42,6 +42,7 @@ module "ecs" {
   target_group_arn      = module.alb.target_group_arn
   alb_security_group_id = module.alb.alb_security_group_id
   alb_listener_arn      = module.alb.alb_listener_arn
+  anthropic_api_key     = var.anthropic_api_key
 }
 
 # S3 Module - hosts our React frontend

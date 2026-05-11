@@ -34,3 +34,9 @@ variable "aws_account_id" {
   type        = string
   default     = "971983845745"
 }
+
+variable "anthropic_api_key" {
+  description = "Anthropic API key for Claude"
+  type        = string
+  sensitive   = true
+}

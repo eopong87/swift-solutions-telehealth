@@ -19,3 +19,5 @@ build/
 
 # Mac
 .DS_Store
+terraform/terraform.tfvars
+terraform/terraform.tfvars

@@ -1,6 +1,0 @@
-aws_region     = "us-east-1"
-app_name       = "swift-solutions"
-db_password    = "Camandjay22!"
-db_username    = "postgres"
-db_name        = "swiftsolutions"
-aws_account_id = "971983845745"

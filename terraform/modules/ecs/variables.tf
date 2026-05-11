@@ -50,3 +50,8 @@ variable "alb_security_group_id" {
 variable "alb_listener_arn" {
   type = string
 }
+
+variable "anthropic_api_key" {
+  type      = string
+  sensitive = true
+}

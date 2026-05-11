@@ -85,6 +85,10 @@ resource "aws_ecs_task_definition" "main" {
         {
           name  = "DATABASE_URL"
           value = "postgresql://${var.db_username}:${var.db_password}@${var.db_endpoint}/${var.db_name}"
+        },
+        {
+          name  = "ANTHROPIC_API_KEY"
+          value = "${var.anthropic_api_key}"
         }
       ]
 
