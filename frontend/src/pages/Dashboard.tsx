@@ -24,10 +24,10 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
 
   const renderPage = () => {
     switch (activePage) {
-      case 'appointments': return <Appointments user={user} />;
-      case 'messages': return <Messages user={user} />;
-      case 'documents': return <Documents user={user} />;
-      case 'video': return <VideoCall user={user} />;
+      case 'appointments': return <Appointments user={user} onBack={() => setActivePage(null)} />;
+      case 'messages': return <Messages user={user} onBack={() => setActivePage(null)} />;
+      case 'documents': return <Documents user={user} onBack={() => setActivePage(null)} />;
+      case 'video': return <VideoCall user={user} onBack={() => setActivePage(null)} />;
       case 'chat': return <Chat user={user} />;
       default: return null;
     }
@@ -44,10 +44,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
           alignItems: 'center',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-          <div
-            style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}
-            onClick={() => setActivePage(null)}
-          >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ fontSize: '24px' }}>🏥</span>
             <span style={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}>
               Swift Solutions Medical Center
@@ -80,7 +77,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
 
   return (
     <div style={{ minHeight: '100vh', background: '#f0f4f8', fontFamily: 'Arial, sans-serif' }}>
-      {/* Header */}
       <div style={{
         background: 'linear-gradient(135deg, #0066cc, #00a8e8)',
         padding: '16px 32px',
@@ -116,7 +112,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div style={{ padding: '40px 32px' }}>
         <h1 style={{ color: '#1a1a2e', marginBottom: '8px', fontSize: '28px' }}>
           Patient Dashboard
@@ -125,7 +120,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
           Welcome back, {user.first_name}! What would you like to do today?
         </p>
 
-        {/* Cards */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
