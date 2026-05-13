@@ -196,32 +196,3 @@ def mark_message_read(message_id: int, db: Session = Depends(get_db)):
     message.is_read = True
     db.commit()
     return {"message": "Marked as read"}
-
-# ── Chat Routes ───────────────────────────────────────────────
-
-class ChatRequest(BaseModel):
-    message: str
-    user_name: str
-
-@router.post("/chat")
-async def chat(request: ChatRequest):
-    import anthropic
-    import os
-    
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-    
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=1024,
-        system="""You are a helpful medical assistant for Swift Solutions Medical Center. 
-        You help patients with general health questions, appointment preparation, 
-        understanding medical terms, and health tips. 
-        Always remind patients to consult their doctor for specific medical advice.
-        Be warm, professional, and concise.""",
-        messages=[
-            {"role": "user", "content": f"{request.user_name} asks: {request.message}"}
-        ]
-    )
-    
-    return {"response": message.content[0].text}
-# trigger rebuild

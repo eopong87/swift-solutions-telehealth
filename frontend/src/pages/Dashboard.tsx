@@ -4,7 +4,6 @@ import Appointments from './Appointments';
 import Messages from './Messages';
 import Documents from './Documents';
 import VideoCall from './VideoCall';
-import Chat from './Chat';
 
 interface DashboardProps {
   user: User;
@@ -19,7 +18,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
     { icon: '💬', title: 'Messages', desc: 'Secure messaging with your care team', color: '#00a8e8', page: 'messages' },
     { icon: '📄', title: 'Documents', desc: 'Upload and view medical documents', color: '#0099cc', page: 'documents' },
     { icon: '🎥', title: 'Video Call', desc: 'Start a video consultation', color: '#006699', page: 'video' },
-    { icon: '🤖', title: 'AI Assistant', desc: 'Chat with your AI medical assistant', color: '#7c3aed', page: 'chat' },
   ];
 
   const renderPage = () => {
@@ -28,7 +26,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
       case 'messages': return <Messages user={user} onBack={() => setActivePage(null)} />;
       case 'documents': return <Documents user={user} onBack={() => setActivePage(null)} />;
       case 'video': return <VideoCall user={user} onBack={() => setActivePage(null)} />;
-      case 'chat': return <Chat user={user} />;
       default: return null;
     }
   };
